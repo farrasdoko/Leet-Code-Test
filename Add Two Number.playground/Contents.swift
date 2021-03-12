@@ -11,39 +11,27 @@ public class ListNode {
 
 class Solution {
     func addTwoNumbers(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
-        var holder = l1
-        var holder2 = l2
+        let result = ListNode(0)
+        var result_tail = result
+        var carry: Int = 0
         
-        var carry = 0
-        var sum = 0
+        var p = l1
+        var q = l2
         
-        let dummyHead = ListNode()
-        var currNode = dummyHead
-        
-        while holder != nil || holder2 != nil {
-            let value = holder?.val ?? 0
-            let value2 = holder2?.val ?? 0
+        while p != nil || q != nil || carry != 0 {
+            let val1 = p?.val ?? 0
+            let val2 = q?.val ?? 0
+            let result = (val1+val2+carry) % 10
+            carry = (val1+val2+carry) / 10
             
-            sum = value + value2 + carry
-            carry = 0
-            if sum > 9 {
-                sum = sum % 10
-                carry = 1
-            }
+            result_tail.next = ListNode(result)
+            result_tail = result_tail.next!
             
-            let node = ListNode(sum)
-            currNode.next = node
-            currNode = currNode.next!
-            
-            holder = holder?.next
-            holder2 = holder2?.next
+            p = p?.next
+            q = q?.next
         }
-        if carry != 0 {
-            let node = ListNode(carry)
-            currNode.next = node
-            currNode = currNode.next!
-        }
-        return dummyHead.next
+        
+        return result.next
     }
 }
 
