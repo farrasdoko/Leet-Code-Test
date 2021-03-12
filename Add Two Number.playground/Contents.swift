@@ -30,13 +30,9 @@ class Solution {
                 sum = sum % 10
                 carry = 1
             }
-            print(sum)
-            print(holder?.next?.val)
-            print("bef = \(dummyHead.next?.val)")
             
             let node = ListNode(sum)
             currNode.next = node
-            print("val = \(currNode.next?.val)")
             currNode = currNode.next!
             
             holder = holder?.next
@@ -47,21 +43,39 @@ class Solution {
             currNode.next = node
             currNode = currNode.next!
         }
-        print("-- start from here --")
-        print(dummyHead.val)
-        print(dummyHead.next?.val)
-        print(dummyHead.next?.next?.val)
-        print(dummyHead.next?.next?.next?.val)
         return dummyHead.next
     }
 }
 
-let last = ListNode(3)
-let last2 = ListNode(4)
-let next = ListNode(4, last)
-let next2 = ListNode(6, last2)
+// Testing
+let numbers: [Int] = [2,4,3]
+let numbers2: [Int] = [5,6,4]
+
+func convert(_ array: [Int]) -> ListNode? {
+    let dummy = ListNode()
+    var tail = dummy
+
+    for item in array {
+        let node = ListNode(item)
+        tail.next = node
+        tail = tail.next!
+    }
+    return dummy.next
+}
+
+let l1 = convert(numbers)
+let l2 = convert(numbers2)
 
 let solution = Solution()
-let l1 = ListNode(2, next)
-let l2 = ListNode(5, next2)
-solution.addTwoNumbers(l1, l2)
+
+// Manage the result
+var result = solution.addTwoNumbers(l1, l2)
+
+var arrResult = Array<Int>()
+while result != nil {
+    if let val = result?.val {
+        arrResult.append(val)
+    }
+    result = result?.next
+}
+print("the result is: \(arrResult)")
