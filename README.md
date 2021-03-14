@@ -11,3 +11,4 @@ Whenever you have better solution, you can fork it and create any pull request. 
 |---|:---:|:---:|
 | **Two Sum**        | 36 ms | 14.4 MB|
 | **Add Two Number** | 44 ms | 14 MB|
+|**Remove Duplicates from Sorted Array**|60 ms|14.7 MB|
